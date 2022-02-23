@@ -1,0 +1,57 @@
+﻿@model ShoppingCart.Models.Database.tblpro
+@{
+    ViewBag.Title = "cart";
+    Layout = "~/Views/Shared/_fe.cshtml";
+}
+
+<h2>Your Cart</h2>
+<table class="table">
+
+
+    @{
+        var total = 0;
+
+        foreach (var q in ViewBag.c)
+        {
+
+            foreach (var item in ViewBag.item)
+            {
+                if (item.pid == q.iid)
+                {
+                    var amount = q.iqty * item.pprice;
+                    <tr>
+                        <td>@item.pname</td>
+                        <td>BDT @item.pprice</td>
+                        <td>@q.iqty</td>
+                        <td>BDT @amount</td>
+
+                    </tr>
+                    total += amount;
+                }
+            }
+        }
+
+        if (total == 0)
+        {
+            <h1>Your Cart is Empty</h1>
+        }
+        else
+        {
+
+            Html.BeginForm("checkout", "Home", FormMethod.Post);
+            <tr>
+                <td></td>
+                <td></td>
+               
+                <td>
+                    @*  Html.ActionLink("checkout", "Home", FormMethod.Post)
+                    *@
+                    <input type="hidden" value="@total" name="total" />
+                    <input type="submit" value="Checkout" class="btn btn-success btn-sm" />
+                </td>
+                <td>BDT @total</td>
+            </tr>
+        }
+    }
+</table>
+

@@ -1,0 +1,22 @@
+﻿@model ShoppingCart.Models.Database.tbluser
+@{ ViewBag.Title = "Index"; }
+
+<h2>Login Here</h2>
+<table>
+    @{ Html.BeginForm("Index", "Admin", FormMethod.Post);
+        <tr>
+            <td>User Name: </td>
+            <td>@Html.TextBoxFor(a => a.uname)</td>
+        </tr>
+                    <tr>
+                        <td>User Password : </td>
+                        <td>@Html.TextBoxFor(a => a.upass)</td>
+                    </tr>
+                                <tr>
+                                    <td>@ViewBag.msg</td>
+                                    <td>
+                                        <input type="submit" value="Login" />
+                                    </td>
+                                </tr> }
+</table>
+
