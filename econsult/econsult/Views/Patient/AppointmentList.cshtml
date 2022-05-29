@@ -1,0 +1,62 @@
+﻿@model IEnumerable<econsult.Models.Database.appointment>
+@{
+    ViewBag.Title = "AppointmentList";
+}
+
+<h2>AppointmentList</h2>
+<style>
+    table {
+        border: solid silver 1px;
+    }
+
+    th {
+        background: skyblue;
+        color: gray;
+    }
+
+    tr:nth-child(even) {
+        background: whitesmoke;
+    }
+
+    td {
+        text-align: center;
+        color: darkblue;
+    }
+
+    tr:nth-child(odd) {
+        background: wheat;
+    }
+
+    td:hover {
+        background: yellowgreen;
+    }
+</style>
+<br />
+<br />
+<br />
+<div class="container-fluid">
+    <table class="table table-responsive table-bordered table-hover">
+        <tr>
+
+            <th>Appointment date</th>
+            <th>Appointment fee</th>
+            <th>doctor name</th>
+            <th colspan="2">Action</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ap_date</td>
+                <td>@item.ap_fee</td>
+                <td>@item.user.u_name</td>
+
+
+                <td><a href="#">Request</a> </td>
+                <td><a href="#">Cancel</a></td>
+            </tr>
+        }
+    </table>
+</div>
+
+

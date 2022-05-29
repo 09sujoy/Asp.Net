@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dpconsultationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ban">
+    <Key>
+      <PropertyRef Name="ban_id" />
+    </Key>
+    <Property Name="ban_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ban_reason" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ban_duration" Type="DateTime" Precision="3" />
+    <Property Name="ban_time" Type="DateTime" Precision="3" />
+    <Property Name="u_id" Type="Int32" />
+    <NavigationProperty Name="user" Relationship="Self.FK_ban_ban" FromRole="ban" ToRole="user" />
+  </EntityType>
+  <EntityType Name="doctor_info">
+    <Key>
+      <PropertyRef Name="did" />
+    </Key>
+    <Property Name="did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="d_govid" Type="Int32" />
+    <Property Name="d_degree" Type="String" MaxLength="1200" FixedLength="false" Unicode="false" />
+    <Property Name="d_speciality" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="u_id" Type="Int32" />
+    <NavigationProperty Name="user" Relationship="Self.FK_doctor_info_user" FromRole="doctor_info" ToRole="user" />
+    <NavigationProperty Name="doctor_schedule" Relationship="dpconsultationModel.FK_doctor_schedule_doctor_info" FromRole="doctor_info" ToRole="doctor_schedule" />
+    <Property Name="isdeleted" Type="Int32" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="u_name" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+    <Property Name="u_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="u_username" Type="String" MaxLength="700" FixedLength="false" Unicode="false" />
+    <Property Name="u_address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="u_phone" Type="Int32" />
+    <Property Name="u_email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="u_nid" Type="Int32" />
+    <Property Name="u_category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="u_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="bans" Relationship="Self.FK_ban_ban" FromRole="user" ToRole="ban" />
+    <NavigationProperty Name="doctor_info" Relationship="Self.FK_doctor_info_user" FromRole="user" ToRole="doctor_info" />
+    <NavigationProperty Name="patients" Relationship="dpconsultationModel.FK_Patient_user" FromRole="user" ToRole="patient" />
+    <NavigationProperty Name="prescriptions" Relationship="dpconsultationModel.FK_prescribtion_user" FromRole="user" ToRole="prescription" />
+    <Property Name="isdeleted" Type="Int32" />
+    <NavigationProperty Name="Tokens" Relationship="dpconsultationModel.FK_Token_user" FromRole="user" ToRole="Token" />
+  </EntityType>
+  <Association Name="FK_ban_ban">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="ban" Type="Self.ban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="ban">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_doctor_info_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="doctor_info" Type="Self.doctor_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="doctor_info">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dpconsultationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bans" EntityType="Self.ban" />
+    <EntitySet Name="doctor_info" EntityType="Self.doctor_info" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK_ban_ban" Association="Self.FK_ban_ban">
+      <End Role="user" EntitySet="users" />
+      <End Role="ban" EntitySet="bans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_doctor_info_user" Association="Self.FK_doctor_info_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="doctor_info" EntitySet="doctor_info" />
+    </AssociationSet>
+    <EntitySet Name="doc_appoinment" EntityType="dpconsultationModel.doc_appoinment" />
+    <EntitySet Name="doctor_schedule" EntityType="dpconsultationModel.doctor_schedule" />
+    <EntitySet Name="patients" EntityType="dpconsultationModel.patient" />
+    <AssociationSet Name="FK_doc_appoinment_doctor_schedule" Association="dpconsultationModel.FK_doc_appoinment_doctor_schedule">
+      <End Role="doctor_schedule" EntitySet="doctor_schedule" />
+      <End Role="doc_appoinment" EntitySet="doc_appoinment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_doc_appoinment" Association="dpconsultationModel.FK_Patient_doc_appoinment">
+      <End Role="doc_appoinment" EntitySet="doc_appoinment" />
+      <End Role="patient" EntitySet="patients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_doctor_schedule_doctor_info" Association="dpconsultationModel.FK_doctor_schedule_doctor_info">
+      <End Role="doctor_info" EntitySet="doctor_info" />
+      <End Role="doctor_schedule" EntitySet="doctor_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_user" Association="dpconsultationModel.FK_Patient_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="patient" EntitySet="patients" />
+    </AssociationSet>
+    <EntitySet Name="prescriptions" EntityType="dpconsultationModel.prescription" />
+    <AssociationSet Name="FK_prescribtion_user" Association="dpconsultationModel.FK_prescribtion_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="prescription" EntitySet="prescriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prescription_patient" Association="dpconsultationModel.FK_prescription_patient">
+      <End Role="patient" EntitySet="patients" />
+      <End Role="prescription" EntitySet="prescriptions" />
+    </AssociationSet>
+    <EntitySet Name="Tokens" EntityType="dpconsultationModel.Token" />
+    <AssociationSet Name="FK_Token_user" Association="dpconsultationModel.FK_Token_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="Token" EntitySet="Tokens" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="doc_appoinment">
+    <Key>
+      <PropertyRef Name="app_id" />
+    </Key>
+    <Property Name="app_id" Type="Int32" Nullable="false" />
+    <Property Name="app_fee" Type="Int32" />
+    <Property Name="app_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="schedule_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="doctor_schedule" Relationship="dpconsultationModel.FK_doc_appoinment_doctor_schedule" FromRole="doc_appoinment" ToRole="doctor_schedule" />
+    <NavigationProperty Name="patients" Relationship="dpconsultationModel.FK_Patient_doc_appoinment" FromRole="doc_appoinment" ToRole="patient" />
+    <Property Name="isdeleted" Type="Int32" />
+  </EntityType>
+  <EntityType Name="doctor_schedule">
+    <Key>
+      <PropertyRef Name="schedule_id" />
+    </Key>
+    <Property Name="schedule_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="schedule_day" Type="DateTime" Precision="0" />
+    <Property Name="schedule_starting_time" Type="Time" Precision="7" />
+    <Property Name="schedule_ending_time" Type="Time" Precision="7" />
+    <Property Name="did" Type="Int32" />
+    <NavigationProperty Name="doc_appoinment" Relationship="dpconsultationModel.FK_doc_appoinment_doctor_schedule" FromRole="doctor_schedule" ToRole="doc_appoinment" />
+    <NavigationProperty Name="doctor_info" Relationship="dpconsultationModel.FK_doctor_schedule_doctor_info" FromRole="doctor_schedule" ToRole="doctor_info" />
+    <Property Name="isdeleted" Type="Int32" />
+  </EntityType>
+  <EntityType Name="patient">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="Int32" Nullable="false" />
+    <Property Name="p_sickness_reason" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+    <Property Name="p_diagnostics_info" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+    <Property Name="u_id" Type="Int32" Nullable="false" />
+    <Property Name="app_id" Type="Int32" />
+    <NavigationProperty Name="doc_appoinment" Relationship="dpconsultationModel.FK_Patient_doc_appoinment" FromRole="patient" ToRole="doc_appoinment" />
+    <NavigationProperty Name="user" Relationship="dpconsultationModel.FK_Patient_user" FromRole="patient" ToRole="user" />
+    <Property Name="isdeleted" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="prescriptions" Relationship="dpconsultationModel.FK_prescription_patient" FromRole="patient" ToRole="prescription" />
+  </EntityType>
+  <Association Name="FK_doc_appoinment_doctor_schedule">
+    <End Type="dpconsultationModel.doctor_schedule" Role="doctor_schedule" Multiplicity="1" />
+    <End Type="dpconsultationModel.doc_appoinment" Role="doc_appoinment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctor_schedule">
+        <PropertyRef Name="schedule_id" />
+      </Principal>
+      <Dependent Role="doc_appoinment">
+        <PropertyRef Name="schedule_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_doc_appoinment">
+    <End Type="dpconsultationModel.doc_appoinment" Role="doc_appoinment" Multiplicity="0..1" />
+    <End Type="dpconsultationModel.patient" Role="patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doc_appoinment">
+        <PropertyRef Name="app_id" />
+      </Principal>
+      <Dependent Role="patient">
+        <PropertyRef Name="app_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_doctor_schedule_doctor_info">
+    <End Type="dpconsultationModel.doctor_info" Role="doctor_info" Multiplicity="0..1" />
+    <End Type="dpconsultationModel.doctor_schedule" Role="doctor_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctor_info">
+        <PropertyRef Name="did" />
+      </Principal>
+      <Dependent Role="doctor_schedule">
+        <PropertyRef Name="did" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_user">
+    <End Type="dpconsultationModel.user" Role="user" Multiplicity="1" />
+    <End Type="dpconsultationModel.patient" Role="patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="patient">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="prescription">
+    <Key>
+      <PropertyRef Name="pres_id" />
+    </Key>
+    <Property Name="pres_id" Type="Int32" Nullable="false" />
+    <Property Name="pres_medicine" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="pres_test" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+    <Property Name="pres_advice" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="u_id" Type="Int32" />
+    <NavigationProperty Name="user" Relationship="dpconsultationModel.FK_prescribtion_user" FromRole="prescription" ToRole="user" />
+    <Property Name="p_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="patient" Relationship="dpconsultationModel.FK_prescription_patient" FromRole="prescription" ToRole="patient" />
+  </EntityType>
+  <Association Name="FK_prescribtion_user">
+    <End Type="dpconsultationModel.user" Role="user" Multiplicity="0..1" />
+    <End Type="dpconsultationModel.prescription" Role="prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="prescription">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prescription_patient">
+    <End Type="dpconsultationModel.patient" Role="patient" Multiplicity="1" />
+    <End Type="dpconsultationModel.prescription" Role="prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="patient">
+        <PropertyRef Name="p_id" />
+      </Principal>
+      <Dependent Role="prescription">
+        <PropertyRef Name="p_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Token">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="u_id" Type="Int32" />
+    <Property Name="accesstoken" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="createdat" Type="DateTime" Precision="3" />
+    <Property Name="expireat" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="user" Relationship="dpconsultationModel.FK_Token_user" FromRole="Token" ToRole="user" />
+  </EntityType>
+  <Association Name="FK_Token_user">
+    <End Type="dpconsultationModel.user" Role="user" Multiplicity="0..1" />
+    <End Type="dpconsultationModel.Token" Role="Token" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="Token">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

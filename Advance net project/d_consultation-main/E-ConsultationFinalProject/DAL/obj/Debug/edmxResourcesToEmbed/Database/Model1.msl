@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dpconsultationModelStoreContainer" CdmEntityContainer="dpconsultationEntities">
+    <EntitySetMapping Name="bans">
+      <EntityTypeMapping TypeName="dpconsultationModel.ban">
+        <MappingFragment StoreEntitySet="ban">
+          <ScalarProperty Name="ban_id" ColumnName="ban_id" />
+          <ScalarProperty Name="ban_reason" ColumnName="ban_reason" />
+          <ScalarProperty Name="ban_duration" ColumnName="ban_duration" />
+          <ScalarProperty Name="ban_time" ColumnName="ban_time" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="doctor_info">
+      <EntityTypeMapping TypeName="dpconsultationModel.doctor_info">
+        <MappingFragment StoreEntitySet="doctor_info">
+          <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+          <ScalarProperty Name="did" ColumnName="did" />
+          <ScalarProperty Name="d_govid" ColumnName="d_govid" />
+          <ScalarProperty Name="d_degree" ColumnName="d_degree" />
+          <ScalarProperty Name="d_speciality" ColumnName="d_speciality" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="dpconsultationModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="u_name" ColumnName="u_name" />
+          <ScalarProperty Name="u_password" ColumnName="u_password" />
+          <ScalarProperty Name="u_username" ColumnName="u_username" />
+          <ScalarProperty Name="u_address" ColumnName="u_address" />
+          <ScalarProperty Name="u_phone" ColumnName="u_phone" />
+          <ScalarProperty Name="u_email" ColumnName="u_email" />
+          <ScalarProperty Name="u_nid" ColumnName="u_nid" />
+          <ScalarProperty Name="u_category" ColumnName="u_category" />
+          <ScalarProperty Name="u_status" ColumnName="u_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="doc_appoinment">
+      <EntityTypeMapping TypeName="dpconsultationModel.doc_appoinment">
+        <MappingFragment StoreEntitySet="doc_appoinment">
+          <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+          <ScalarProperty Name="schedule_id" ColumnName="schedule_id" />
+          <ScalarProperty Name="app_status" ColumnName="app_status" />
+          <ScalarProperty Name="app_fee" ColumnName="app_fee" />
+          <ScalarProperty Name="app_id" ColumnName="app_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="doctor_schedule">
+      <EntityTypeMapping TypeName="dpconsultationModel.doctor_schedule">
+        <MappingFragment StoreEntitySet="doctor_schedule">
+          <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+          <ScalarProperty Name="did" ColumnName="did" />
+          <ScalarProperty Name="schedule_ending_time" ColumnName="schedule_ending_time" />
+          <ScalarProperty Name="schedule_starting_time" ColumnName="schedule_starting_time" />
+          <ScalarProperty Name="schedule_day" ColumnName="schedule_day" />
+          <ScalarProperty Name="schedule_id" ColumnName="schedule_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="patients">
+      <EntityTypeMapping TypeName="dpconsultationModel.patient">
+        <MappingFragment StoreEntitySet="patient">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+          <ScalarProperty Name="app_id" ColumnName="app_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="p_diagnostics_info" ColumnName="p_diagnostics_info" />
+          <ScalarProperty Name="p_sickness_reason" ColumnName="p_sickness_reason" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="prescriptions">
+      <EntityTypeMapping TypeName="dpconsultationModel.prescription">
+        <MappingFragment StoreEntitySet="prescription">
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="pres_advice" ColumnName="pres_advice" />
+          <ScalarProperty Name="pres_test" ColumnName="pres_test" />
+          <ScalarProperty Name="pres_medicine" ColumnName="pres_medicine" />
+          <ScalarProperty Name="pres_id" ColumnName="pres_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tokens">
+      <EntityTypeMapping TypeName="dpconsultationModel.Token">
+        <MappingFragment StoreEntitySet="Token">
+          <ScalarProperty Name="expireat" ColumnName="expireat" />
+          <ScalarProperty Name="createdat" ColumnName="createdat" />
+          <ScalarProperty Name="accesstoken" ColumnName="accesstoken" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

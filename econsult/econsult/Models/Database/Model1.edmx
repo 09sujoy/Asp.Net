@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="econsultationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="appointment">
+          <Key>
+            <PropertyRef Name="ap_id" />
+          </Key>
+          <Property Name="ap_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ap_date" Type="datetime" />
+          <Property Name="ap_fee" Type="float" />
+          <Property Name="u_id" Type="int" />
+        </EntityType>
+        <EntityType Name="consultation">
+          <Key>
+            <PropertyRef Name="con_id" />
+          </Key>
+          <Property Name="con_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="p_name" Type="varchar" MaxLength="900" />
+          <Property Name="ap_id" Type="int" />
+          <Property Name="u_id" Type="int" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_username" Type="varchar" MaxLength="200" />
+          <Property Name="u_password" Type="varchar" MaxLength="50" />
+          <Property Name="u_name" Type="varchar" MaxLength="400" />
+          <Property Name="u_address" Type="varchar" MaxLength="600" />
+          <Property Name="u_phone" Type="int" />
+          <Property Name="u_email" Type="varchar" MaxLength="600" />
+          <Property Name="u_nid" Type="int" />
+          <Property Name="u_category" Type="varchar" MaxLength="50" />
+          <Property Name="u_status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_appointment_user1">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="appointment" Type="Self.appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="appointment">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_consultation_user">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="consultation" Type="Self.consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="consultation">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="econsultationModelStoreContainer">
+          <EntitySet Name="appointment" EntityType="Self.appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="consultation" EntityType="Self.consultation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_appointment_user1" Association="Self.FK_appointment_user1">
+            <End Role="user" EntitySet="user" />
+            <End Role="appointment" EntitySet="appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_consultation_user" Association="Self.FK_consultation_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="consultation" EntitySet="consultation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="econsultationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="appointment">
+          <Key>
+            <PropertyRef Name="ap_id" />
+          </Key>
+          <Property Name="ap_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ap_date" Type="DateTime" Precision="3" />
+          <Property Name="ap_fee" Type="Double" />
+          <Property Name="u_id" Type="Int32" />
+          <NavigationProperty Name="user" Relationship="Self.FK_appointment_user1" FromRole="appointment" ToRole="user" />
+        </EntityType>
+        <EntityType Name="consultation">
+          <Key>
+            <PropertyRef Name="con_id" />
+          </Key>
+          <Property Name="con_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="p_name" Type="String" MaxLength="900" FixedLength="false" Unicode="false" />
+          <Property Name="ap_id" Type="Int32" />
+          <Property Name="u_id" Type="Int32" />
+          <NavigationProperty Name="user" Relationship="Self.FK_consultation_user" FromRole="consultation" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_username" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="u_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="u_name" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="u_address" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="u_phone" Type="Int32" />
+          <Property Name="u_email" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="u_nid" Type="Int32" />
+          <Property Name="u_category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="u_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="appointments" Relationship="Self.FK_appointment_user1" FromRole="user" ToRole="appointment" />
+          <NavigationProperty Name="consultations" Relationship="Self.FK_consultation_user" FromRole="user" ToRole="consultation" />
+        </EntityType>
+        <Association Name="FK_appointment_user1">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="appointment" Type="Self.appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="appointment">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_consultation_user">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="consultation" Type="Self.consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="consultation">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="econsultationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="appointments" EntityType="Self.appointment" />
+          <EntitySet Name="consultations" EntityType="Self.consultation" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK_appointment_user1" Association="Self.FK_appointment_user1">
+            <End Role="user" EntitySet="users" />
+            <End Role="appointment" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_consultation_user" Association="Self.FK_consultation_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="consultation" EntitySet="consultations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="econsultationModelStoreContainer" CdmEntityContainer="econsultationEntities">
+          <EntitySetMapping Name="appointments">
+            <EntityTypeMapping TypeName="econsultationModel.appointment">
+              <MappingFragment StoreEntitySet="appointment">
+                <ScalarProperty Name="ap_id" ColumnName="ap_id" />
+                <ScalarProperty Name="ap_date" ColumnName="ap_date" />
+                <ScalarProperty Name="ap_fee" ColumnName="ap_fee" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="consultations">
+            <EntityTypeMapping TypeName="econsultationModel.consultation">
+              <MappingFragment StoreEntitySet="consultation">
+                <ScalarProperty Name="con_id" ColumnName="con_id" />
+                <ScalarProperty Name="p_name" ColumnName="p_name" />
+                <ScalarProperty Name="ap_id" ColumnName="ap_id" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="econsultationModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="u_username" ColumnName="u_username" />
+                <ScalarProperty Name="u_password" ColumnName="u_password" />
+                <ScalarProperty Name="u_name" ColumnName="u_name" />
+                <ScalarProperty Name="u_address" ColumnName="u_address" />
+                <ScalarProperty Name="u_phone" ColumnName="u_phone" />
+                <ScalarProperty Name="u_email" ColumnName="u_email" />
+                <ScalarProperty Name="u_nid" ColumnName="u_nid" />
+                <ScalarProperty Name="u_category" ColumnName="u_category" />
+                <ScalarProperty Name="u_status" ColumnName="u_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

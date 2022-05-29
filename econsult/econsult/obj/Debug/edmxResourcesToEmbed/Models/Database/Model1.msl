@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="econsultationModelStoreContainer" CdmEntityContainer="econsultationEntities">
+    <EntitySetMapping Name="appointments">
+      <EntityTypeMapping TypeName="econsultationModel.appointment">
+        <MappingFragment StoreEntitySet="appointment">
+          <ScalarProperty Name="ap_id" ColumnName="ap_id" />
+          <ScalarProperty Name="ap_date" ColumnName="ap_date" />
+          <ScalarProperty Name="ap_fee" ColumnName="ap_fee" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="consultations">
+      <EntityTypeMapping TypeName="econsultationModel.consultation">
+        <MappingFragment StoreEntitySet="consultation">
+          <ScalarProperty Name="con_id" ColumnName="con_id" />
+          <ScalarProperty Name="p_name" ColumnName="p_name" />
+          <ScalarProperty Name="ap_id" ColumnName="ap_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="econsultationModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="u_username" ColumnName="u_username" />
+          <ScalarProperty Name="u_password" ColumnName="u_password" />
+          <ScalarProperty Name="u_name" ColumnName="u_name" />
+          <ScalarProperty Name="u_address" ColumnName="u_address" />
+          <ScalarProperty Name="u_phone" ColumnName="u_phone" />
+          <ScalarProperty Name="u_email" ColumnName="u_email" />
+          <ScalarProperty Name="u_nid" ColumnName="u_nid" />
+          <ScalarProperty Name="u_category" ColumnName="u_category" />
+          <ScalarProperty Name="u_status" ColumnName="u_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

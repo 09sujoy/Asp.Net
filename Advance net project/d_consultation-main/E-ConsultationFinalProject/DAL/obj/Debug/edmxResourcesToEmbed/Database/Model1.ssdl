@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dpconsultationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ban">
+    <Key>
+      <PropertyRef Name="ban_id" />
+    </Key>
+    <Property Name="ban_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ban_reason" Type="varchar" MaxLength="500" />
+    <Property Name="ban_duration" Type="datetime" />
+    <Property Name="ban_time" Type="datetime" />
+    <Property Name="u_id" Type="int" />
+  </EntityType>
+  <EntityType Name="doc_appoinment">
+    <Key>
+      <PropertyRef Name="app_id" />
+    </Key>
+    <Property Name="app_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="app_fee" Type="int" />
+    <Property Name="app_status" Type="varchar" MaxLength="50" />
+    <Property Name="schedule_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="isdeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="doctor_info">
+    <Key>
+      <PropertyRef Name="did" />
+    </Key>
+    <Property Name="did" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="d_govid" Type="int" />
+    <Property Name="d_degree" Type="varchar" MaxLength="1200" />
+    <Property Name="d_speciality" Type="varchar" MaxLength="500" />
+    <Property Name="u_id" Type="int" />
+    <Property Name="isdeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="doctor_schedule">
+    <Key>
+      <PropertyRef Name="schedule_id" />
+    </Key>
+    <Property Name="schedule_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="schedule_day" Type="date" />
+    <Property Name="schedule_starting_time" Type="time" Precision="7" />
+    <Property Name="schedule_ending_time" Type="time" Precision="7" />
+    <Property Name="did" Type="int" />
+    <Property Name="isdeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="patient">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_sickness_reason" Type="varchar" MaxLength="600" />
+    <Property Name="p_diagnostics_info" Type="varchar" MaxLength="1500" />
+    <Property Name="u_id" Type="int" Nullable="false" />
+    <Property Name="app_id" Type="int" />
+    <Property Name="isdeleted" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="prescription">
+    <Key>
+      <PropertyRef Name="pres_id" />
+    </Key>
+    <Property Name="pres_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pres_medicine" Type="varchar" MaxLength="500" />
+    <Property Name="pres_test" Type="varchar" MaxLength="600" />
+    <Property Name="pres_advice" Type="varchar" MaxLength="300" />
+    <Property Name="p_id" Type="int" Nullable="false" />
+    <Property Name="u_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Token">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_id" Type="int" />
+    <Property Name="accesstoken" Type="varchar" MaxLength="200" />
+    <Property Name="createdat" Type="datetime" />
+    <Property Name="expireat" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_name" Type="varchar" MaxLength="600" />
+    <Property Name="u_password" Type="varchar" MaxLength="50" />
+    <Property Name="u_username" Type="varchar" MaxLength="700" />
+    <Property Name="u_address" Type="varchar" MaxLength="300" />
+    <Property Name="u_phone" Type="int" />
+    <Property Name="u_email" Type="varchar" MaxLength="200" />
+    <Property Name="u_nid" Type="int" />
+    <Property Name="u_category" Type="varchar" MaxLength="50" />
+    <Property Name="u_status" Type="varchar" MaxLength="50" />
+    <Property Name="isdeleted" Type="int" />
+  </EntityType>
+  <Association Name="FK_ban_ban">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="ban" Type="Self.ban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="ban">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_doc_appoinment_doctor_schedule">
+    <End Role="doctor_schedule" Type="Self.doctor_schedule" Multiplicity="1" />
+    <End Role="doc_appoinment" Type="Self.doc_appoinment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctor_schedule">
+        <PropertyRef Name="schedule_id" />
+      </Principal>
+      <Dependent Role="doc_appoinment">
+        <PropertyRef Name="schedule_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_doctor_info_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="doctor_info" Type="Self.doctor_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="doctor_info">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_doctor_schedule_doctor_info">
+    <End Role="doctor_info" Type="Self.doctor_info" Multiplicity="0..1" />
+    <End Role="doctor_schedule" Type="Self.doctor_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctor_info">
+        <PropertyRef Name="did" />
+      </Principal>
+      <Dependent Role="doctor_schedule">
+        <PropertyRef Name="did" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_doc_appoinment">
+    <End Role="doc_appoinment" Type="Self.doc_appoinment" Multiplicity="0..1" />
+    <End Role="patient" Type="Self.patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doc_appoinment">
+        <PropertyRef Name="app_id" />
+      </Principal>
+      <Dependent Role="patient">
+        <PropertyRef Name="app_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="patient" Type="Self.patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="patient">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prescribtion_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="prescription" Type="Self.prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="prescription">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prescription_patient">
+    <End Role="patient" Type="Self.patient" Multiplicity="1" />
+    <End Role="prescription" Type="Self.prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="patient">
+        <PropertyRef Name="p_id" />
+      </Principal>
+      <Dependent Role="prescription">
+        <PropertyRef Name="p_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Token_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="Token" Type="Self.Token" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="Token">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dpconsultationModelStoreContainer">
+    <EntitySet Name="ban" EntityType="Self.ban" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="doc_appoinment" EntityType="Self.doc_appoinment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="doctor_info" EntityType="Self.doctor_info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="doctor_schedule" EntityType="Self.doctor_schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="prescription" EntityType="Self.prescription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Token" EntityType="Self.Token" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ban_ban" Association="Self.FK_ban_ban">
+      <End Role="user" EntitySet="user" />
+      <End Role="ban" EntitySet="ban" />
+    </AssociationSet>
+    <AssociationSet Name="FK_doc_appoinment_doctor_schedule" Association="Self.FK_doc_appoinment_doctor_schedule">
+      <End Role="doctor_schedule" EntitySet="doctor_schedule" />
+      <End Role="doc_appoinment" EntitySet="doc_appoinment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_doctor_info_user" Association="Self.FK_doctor_info_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="doctor_info" EntitySet="doctor_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_doctor_schedule_doctor_info" Association="Self.FK_doctor_schedule_doctor_info">
+      <End Role="doctor_info" EntitySet="doctor_info" />
+      <End Role="doctor_schedule" EntitySet="doctor_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_doc_appoinment" Association="Self.FK_Patient_doc_appoinment">
+      <End Role="doc_appoinment" EntitySet="doc_appoinment" />
+      <End Role="patient" EntitySet="patient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_user" Association="Self.FK_Patient_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="patient" EntitySet="patient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prescribtion_user" Association="Self.FK_prescribtion_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="prescription" EntitySet="prescription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prescription_patient" Association="Self.FK_prescription_patient">
+      <End Role="patient" EntitySet="patient" />
+      <End Role="prescription" EntitySet="prescription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Token_user" Association="Self.FK_Token_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="Token" EntitySet="Token" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

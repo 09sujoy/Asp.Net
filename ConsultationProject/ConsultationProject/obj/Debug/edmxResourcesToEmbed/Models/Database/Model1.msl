@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="econsultationModelStoreContainer" CdmEntityContainer="econsultationEntities">
+    <EntitySetMapping Name="appointments">
+      <EntityTypeMapping TypeName="econsultationModel.appointment">
+        <MappingFragment StoreEntitySet="appointment">
+          <ScalarProperty Name="ap_id" ColumnName="ap_id" />
+          <ScalarProperty Name="ap_date" ColumnName="ap_date" />
+          <ScalarProperty Name="ap_fee" ColumnName="ap_fee" />
+          <ScalarProperty Name="d_id" ColumnName="d_id" />
+          <ScalarProperty Name="ap_status" ColumnName="ap_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="doctor_info">
+      <EntityTypeMapping TypeName="econsultationModel.doctor_info">
+        <MappingFragment StoreEntitySet="doctor_info">
+          <ScalarProperty Name="d_id" ColumnName="d_id" />
+          <ScalarProperty Name="d_govid" ColumnName="d_govid" />
+          <ScalarProperty Name="d_degree" ColumnName="d_degree" />
+          <ScalarProperty Name="d_specialty" ColumnName="d_specialty" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="doctor_schedule">
+      <EntityTypeMapping TypeName="econsultationModel.doctor_schedule">
+        <MappingFragment StoreEntitySet="doctor_schedule">
+          <ScalarProperty Name="schedule_id" ColumnName="schedule_id" />
+          <ScalarProperty Name="day" ColumnName="day" />
+          <ScalarProperty Name="starting_time" ColumnName="starting_time" />
+          <ScalarProperty Name="ending_time" ColumnName="ending_time" />
+          <ScalarProperty Name="d_id" ColumnName="d_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="patients">
+      <EntityTypeMapping TypeName="econsultationModel.patient">
+        <MappingFragment StoreEntitySet="patient">
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="p_sickreason" ColumnName="p_sickreason" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="econsultationModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="u_username" ColumnName="u_username" />
+          <ScalarProperty Name="u_password" ColumnName="u_password" />
+          <ScalarProperty Name="u_name" ColumnName="u_name" />
+          <ScalarProperty Name="u_address" ColumnName="u_address" />
+          <ScalarProperty Name="u_phone" ColumnName="u_phone" />
+          <ScalarProperty Name="u_email" ColumnName="u_email" />
+          <ScalarProperty Name="u_nid" ColumnName="u_nid" />
+          <ScalarProperty Name="u_category" ColumnName="u_category" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="u_status" ColumnName="u_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

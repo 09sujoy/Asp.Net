@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="econsultationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="appointment">
+    <Key>
+      <PropertyRef Name="ap_id" />
+    </Key>
+    <Property Name="ap_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ap_date" Type="datetime" />
+    <Property Name="ap_fee" Type="float" />
+    <Property Name="u_id" Type="int" />
+  </EntityType>
+  <EntityType Name="consultation">
+    <Key>
+      <PropertyRef Name="con_id" />
+    </Key>
+    <Property Name="con_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_name" Type="varchar" MaxLength="900" />
+    <Property Name="ap_id" Type="int" />
+    <Property Name="u_id" Type="int" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_username" Type="varchar" MaxLength="200" />
+    <Property Name="u_password" Type="varchar" MaxLength="50" />
+    <Property Name="u_name" Type="varchar" MaxLength="400" />
+    <Property Name="u_address" Type="varchar" MaxLength="600" />
+    <Property Name="u_phone" Type="int" />
+    <Property Name="u_email" Type="varchar" MaxLength="600" />
+    <Property Name="u_nid" Type="int" />
+    <Property Name="u_category" Type="varchar" MaxLength="50" />
+    <Property Name="u_status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_appointment_user1">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="appointment" Type="Self.appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="appointment">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consultation_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="consultation" Type="Self.consultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="consultation">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="econsultationModelStoreContainer">
+    <EntitySet Name="appointment" EntityType="Self.appointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="consultation" EntityType="Self.consultation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_appointment_user1" Association="Self.FK_appointment_user1">
+      <End Role="user" EntitySet="user" />
+      <End Role="appointment" EntitySet="appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consultation_user" Association="Self.FK_consultation_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="consultation" EntitySet="consultation" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

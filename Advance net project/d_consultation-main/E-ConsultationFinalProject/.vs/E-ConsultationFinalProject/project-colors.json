@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f015b11e-ee93-4aa6-a80b-ad8947824fd8": {
+      "ProjectGuid": "f015b11e-ee93-4aa6-a80b-ad8947824fd8",
+      "DisplayName": "ConsoleApi",
+      "ColorIndex": 0
+    },
+    "0dad84a1-f0d7-4406-b4c9-c042848df80c": {
+      "ProjectGuid": "0dad84a1-f0d7-4406-b4c9-c042848df80c",
+      "DisplayName": "DAL",
+      "ColorIndex": 1
+    },
+    "3f906e05-eab3-4def-95d3-71984a678650": {
+      "ProjectGuid": "3f906e05-eab3-4def-95d3-71984a678650",
+      "DisplayName": "BLL",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 3
+}

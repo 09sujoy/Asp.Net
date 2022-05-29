@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ConsultationProject.Models.Database.appointment>
+@{
+    ViewBag.Title = "AppointmentList";
+}
+
+<h2>AppointmentList</h2>
+<style>
+    table {
+        border: solid silver 1px;
+    }
+
+    th {
+        background: skyblue;
+        color: gray;
+    }
+
+    tr:nth-child(even) {
+        background: whitesmoke;
+    }
+
+    td {
+        text-align: center;
+        color: darkblue;
+    }
+
+    tr:nth-child(odd) {
+        background: wheat;
+    }
+
+    td:hover {
+        background: yellowgreen;
+    }
+</style>
+<br />
+<br />
+<br />
+<div class="container-fluid">
+    <table class="table table-responsive table-bordered table-hover">
+        <tr>
+
+            <th>Appointment date</th>
+            <th>Appointment fee</th>
+            <th>doctor name</th>
+            <th>Action</th>
+            <th>Doctor_schedule</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>@item.ap_date</td>
+        <td>@item.ap_fee</td>
+        <td>@item.doctor_info.user.u_name</td>
+        <td>
+            @{
+                if (item.ap_status.Equals("Request"))
+                {
+                    <a href="/Patient/Request_sent/@item.ap_id"> Request </a>
+
+                }
+                else if (item.ap_status.Equals("Request sent"))
+                {
+                    <a href="/Patient/Cancel_request/@item.ap_id">Request sent </a>
+                }
+
+            }
+        </td>
+        @{
+            if (item.d_id.Equals(@item.doctor_info.d_id))
+            {
+                <td><a href="/Patient/schedule/@item.doctor_info.d_id">Schedule </a></td>
+            }
+        }
+
+    </tr>
+            }
+     
+          
+       
+        
+    </table>
+</div>
+
+

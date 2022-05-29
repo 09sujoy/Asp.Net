@@ -1,0 +1,20 @@
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\DAL\bin\Debug\DAL.dll.config
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\DAL\bin\Debug\DAL.dll
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\DAL\bin\Debug\DAL.pdb
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\DAL\bin\Debug\EntityFramework.dll
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\DAL\bin\Debug\EntityFramework.xml
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\DAL\obj\Debug\DAL.dll
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\DAL\obj\Debug\DAL.pdb
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\DAL\bin\Debug\DAL.dll.config
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\DAL\bin\Debug\DAL.dll
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\DAL\bin\Debug\DAL.pdb
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\DAL\bin\Debug\EntityFramework.dll
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\DAL\bin\Debug\EntityFramework.xml
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\DAL\obj\Debug\DAL.dll
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\DAL\obj\Debug\DAL.pdb

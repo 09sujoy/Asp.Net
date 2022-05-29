@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="econsultationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="appointment">
+    <Key>
+      <PropertyRef Name="ap_id" />
+    </Key>
+    <Property Name="ap_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ap_date" Type="datetime" />
+    <Property Name="ap_fee" Type="float" />
+    <Property Name="d_id" Type="int" />
+    <Property Name="ap_status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="doctor_info">
+    <Key>
+      <PropertyRef Name="d_id" />
+    </Key>
+    <Property Name="d_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="d_govid" Type="int" />
+    <Property Name="d_degree" Type="varchar" MaxLength="100" />
+    <Property Name="d_specialty" Type="varchar" MaxLength="200" />
+    <Property Name="u_id" Type="int" />
+  </EntityType>
+  <EntityType Name="doctor_schedule">
+    <Key>
+      <PropertyRef Name="schedule_id" />
+    </Key>
+    <Property Name="schedule_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="day" Type="varchar" MaxLength="20" />
+    <Property Name="starting_time" Type="time" Precision="6" />
+    <Property Name="ending_time" Type="time" Precision="6" />
+    <Property Name="d_id" Type="int" />
+  </EntityType>
+  <EntityType Name="patient">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_sickreason" Type="varchar" MaxLength="5000" />
+    <Property Name="u_id" Type="int" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_username" Type="varchar" MaxLength="200" />
+    <Property Name="u_password" Type="varchar" MaxLength="50" />
+    <Property Name="u_name" Type="varchar" MaxLength="400" />
+    <Property Name="u_address" Type="varchar" MaxLength="600" />
+    <Property Name="u_phone" Type="int" />
+    <Property Name="u_email" Type="varchar" MaxLength="600" />
+    <Property Name="u_nid" Type="int" />
+    <Property Name="u_category" Type="varchar" MaxLength="50" />
+    <Property Name="gender" Type="varchar" MaxLength="50" />
+    <Property Name="u_status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_appointment_doctor_info">
+    <End Role="doctor_info" Type="Self.doctor_info" Multiplicity="0..1" />
+    <End Role="appointment" Type="Self.appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctor_info">
+        <PropertyRef Name="d_id" />
+      </Principal>
+      <Dependent Role="appointment">
+        <PropertyRef Name="d_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_doctor_info_doctor_schedule">
+    <End Role="doctor_info" Type="Self.doctor_info" Multiplicity="1" />
+    <End Role="doctor_info1" Type="Self.doctor_info" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="doctor_info">
+        <PropertyRef Name="d_id" />
+      </Principal>
+      <Dependent Role="doctor_info1">
+        <PropertyRef Name="d_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_doctor_info_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="doctor_info" Type="Self.doctor_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="doctor_info">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_doctor_schedule_doctor_info">
+    <End Role="doctor_info" Type="Self.doctor_info" Multiplicity="0..1" />
+    <End Role="doctor_schedule" Type="Self.doctor_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctor_info">
+        <PropertyRef Name="d_id" />
+      </Principal>
+      <Dependent Role="doctor_schedule">
+        <PropertyRef Name="d_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_patient_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="patient" Type="Self.patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="patient">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="econsultationModelStoreContainer">
+    <EntitySet Name="appointment" EntityType="Self.appointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="doctor_info" EntityType="Self.doctor_info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="doctor_schedule" EntityType="Self.doctor_schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_appointment_doctor_info" Association="Self.FK_appointment_doctor_info">
+      <End Role="doctor_info" EntitySet="doctor_info" />
+      <End Role="appointment" EntitySet="appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_doctor_info_doctor_schedule" Association="Self.FK_doctor_info_doctor_schedule">
+      <End Role="doctor_info" EntitySet="doctor_info" />
+      <End Role="doctor_info1" EntitySet="doctor_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_doctor_info_user" Association="Self.FK_doctor_info_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="doctor_info" EntitySet="doctor_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_doctor_schedule_doctor_info" Association="Self.FK_doctor_schedule_doctor_info">
+      <End Role="doctor_info" EntitySet="doctor_info" />
+      <End Role="doctor_schedule" EntitySet="doctor_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_patient_user" Association="Self.FK_patient_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="patient" EntitySet="patient" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

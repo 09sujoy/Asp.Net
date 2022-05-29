@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ConsultationProject.Models.Database.doctor_schedule>
+@{
+    ViewBag.Title = "Doctor's Schedule";
+}
+
+<h2>AppointmentList</h2>
+<style>
+    table {
+        border: solid silver 1px;
+    }
+
+    th {
+        background: skyblue;
+        color: gray;
+    }
+
+    tr:nth-child(even) {
+        background: whitesmoke;
+    }
+
+    td {
+        text-align: center;
+        color: darkblue;
+    }
+
+    tr:nth-child(odd) {
+        background: wheat;
+    }
+
+    td:hover {
+        background: yellowgreen;
+    }
+</style>
+<br />
+<br />
+<br />
+<div class="container-fluid">
+    <table class="table table-responsive table-bordered table-hover">
+        <tr>
+            <th>Doctor name</th>
+            <th>Day</th>
+            <th>Starting time</th>
+            <th>Ending time</th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+           
+            
+                <tr>
+                    <td>@item.doctor_info.user.u_name
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    </td>
+                    <td>@item.day</td>
+                    <td>@item.starting_time</td>
+                    <td>@item.ending_time</td>
+
+                </tr>
+            
+
+        }
+
+
+
+
+    </table>
+</div>
+
+

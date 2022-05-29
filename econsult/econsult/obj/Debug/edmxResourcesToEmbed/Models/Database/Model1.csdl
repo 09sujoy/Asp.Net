@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="econsultationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="appointment">
+    <Key>
+      <PropertyRef Name="ap_id" />
+    </Key>
+    <Property Name="ap_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ap_date" Type="DateTime" Precision="3" />
+    <Property Name="ap_fee" Type="Double" />
+    <Property Name="u_id" Type="Int32" />
+    <NavigationProperty Name="user" Relationship="Self.FK_appointment_user1" FromRole="appointment" ToRole="user" />
+  </EntityType>
+  <EntityType Name="consultation">
+    <Key>
+      <PropertyRef Name="con_id" />
+    </Key>
+    <Property Name="con_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="p_name" Type="String" MaxLength="900" FixedLength="false" Unicode="false" />
+    <Property Name="ap_id" Type="Int32" />
+    <Property Name="u_id" Type="Int32" />
+    <NavigationProperty Name="user" Relationship="Self.FK_consultation_user" FromRole="consultation" ToRole="user" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="u_username" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="u_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="u_name" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="u_address" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+    <Property Name="u_phone" Type="Int32" />
+    <Property Name="u_email" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+    <Property Name="u_nid" Type="Int32" />
+    <Property Name="u_category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="u_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="appointments" Relationship="Self.FK_appointment_user1" FromRole="user" ToRole="appointment" />
+    <NavigationProperty Name="consultations" Relationship="Self.FK_consultation_user" FromRole="user" ToRole="consultation" />
+  </EntityType>
+  <Association Name="FK_appointment_user1">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="appointment" Type="Self.appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="appointment">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consultation_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="consultation" Type="Self.consultation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="consultation">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="econsultationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="appointments" EntityType="Self.appointment" />
+    <EntitySet Name="consultations" EntityType="Self.consultation" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK_appointment_user1" Association="Self.FK_appointment_user1">
+      <End Role="user" EntitySet="users" />
+      <End Role="appointment" EntitySet="appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consultation_user" Association="Self.FK_consultation_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="consultation" EntitySet="consultations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

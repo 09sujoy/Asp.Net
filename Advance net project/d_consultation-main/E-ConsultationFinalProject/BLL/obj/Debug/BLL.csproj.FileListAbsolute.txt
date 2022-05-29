@@ -1,0 +1,24 @@
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\bin\Debug\BLL.dll
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\bin\Debug\BLL.pdb
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\bin\Debug\DAL.dll
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\bin\Debug\EntityFramework.dll
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\bin\Debug\DAL.pdb
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\bin\Debug\DAL.dll.config
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\bin\Debug\EntityFramework.xml
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\obj\Debug\BLL.dll
+C:\Users\IMON\source\repos\E-ConsultationFinalProject\BLL\obj\Debug\BLL.pdb
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\bin\Debug\BLL.dll
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\bin\Debug\BLL.pdb
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\bin\Debug\DAL.dll
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\bin\Debug\EntityFramework.dll
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\bin\Debug\DAL.pdb
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\bin\Debug\DAL.dll.config
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\bin\Debug\EntityFramework.xml
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\obj\Debug\BLL.dll
+C:\Users\IMON\Desktop\.net Final Project\d_consultation\E-ConsultationFinalProject\BLL\obj\Debug\BLL.pdb
