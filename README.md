@@ -8,4 +8,4 @@ In our project, we have worked with three users. The functionalities of the user
 
 3)Admin: Admin will be able to see the patients, and doctors if any problem arises or if any user needs to be removed. He will also be able to manage the appointment list according to the payment information. He can also ban a user depending on spam messages and attacking behaviour. The banned user could also interact with the admin to know the banning reason. If the doctor wants to modify his name, degree, and government-provided ID then the user should request the admin panel for modification. Moreover, if the doctor wants to change the email or phone number the user will receive an OTP from the admin.
 
-In our project using these three users we want to provide a better online service to our client. But we haven’t completed all the functionalities of our project. We will try to finish the features in the future.
+In our project using these three users we want to provide a better online service to our client. 
